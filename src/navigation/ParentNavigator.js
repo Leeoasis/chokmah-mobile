@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ParentDashboard from '../screens/parent/ParentDashboard';
 import ReportsScreen from '../screens/parent/ReportsScreen';
 import ResourcesScreen from '../screens/parent/ResourcesScreen';
+import CalendarScreen from '../screens/parent/CalendarScreen';
 import ProfileScreen from '../screens/shared/ProfileScreen';
 import { ROUTES } from '../constants/routes';
 import { COLORS } from '../constants/colors';
@@ -54,6 +55,15 @@ const ParentNavigator = () => {
           title: 'Resources',
           tabBarLabel: 'Resources',
           tabBarIcon: () => '📁',
+        }}
+      />
+      <Tab.Screen
+        name={ROUTES.PARENT_CALENDAR}
+        component={CalendarScreen}
+        options={{
+          title: 'Calendar',
+          tabBarLabel: 'Calendar',
+          tabBarIcon: () => '📅',
         }}
       />
       <Tab.Screen

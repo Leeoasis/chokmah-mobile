@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import AuthNavigator from './AuthNavigator';
 import ParentNavigator from './ParentNavigator';
 import TeacherNavigator from './TeacherNavigator';
+import AdminNavigator from './AdminNavigator';
 import { USER_ROLES } from '../constants/routes';
 
 const AppNavigator = () => {
@@ -20,8 +21,7 @@ const AppNavigator = () => {
       case USER_ROLES.TEACHER:
         return <TeacherNavigator />;
       case USER_ROLES.ADMIN:
-        // For now, Admin users will see Teacher dashboard
-        return <TeacherNavigator />;
+        return <AdminNavigator />;
       default:
         return <AuthNavigator />;
     }
