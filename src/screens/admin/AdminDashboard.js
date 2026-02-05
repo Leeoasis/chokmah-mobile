@@ -1,17 +1,50 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchReports } from '../../redux/slices/reportsSlice';
+import { fetchResources } from '../../redux/slices/resourcesSlice';
 import Card from '../../components/common/Card';
 import { COLORS } from '../../constants/colors';
 
-const AdminDashboard = () => {
+const AdminDashboard = ({ navigation }) => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { reports } = useSelector((state) => state.reports);
+  const { resources } = useSelector((state) => state.resources);
+
+  useEffect(() => {
+    dispatch(fetchReports());
+    dispatch(fetchResources());
+  }, []);
 
   const stats = [
     { label: 'Total Parents', value: '0', icon: '👨‍👩‍👧‍👦' },
     { label: 'Total Teachers', value: '0', icon: '👨‍🏫' },
-    { label: 'Total Reports', value: '0', icon: '📄' },
-    { label: 'Total Resources', value: '0', icon: '📁' },
+    { label: 'Total Reports', value: reports?.length || '0', icon: '📄' },
+    { label: 'Total Resources', value: resources?.length || '0', icon: '📁' },
+  ];
+
+  const quickActions = [
+    {
+      title: 'Upload Resource',
+      icon: '📁',
+      onPress: () => navigation.navigate('AdminUploadResource'),
+    },
+    {
+      title: 'Upload Report',
+      icon: '📄',
+      onPress: () => navigation.navigate('AdminUploadReport'),
+    },
+    {
+      title: 'User Management',
+      icon: '👥',
+      onPress: () => {}, // Placeholder
+    },
+    {
+      title: 'Analytics',
+      icon: '📊',
+      onPress: () => {}, // Placeholder
+    },
   ];
 
   return (
@@ -31,16 +64,32 @@ const AdminDashboard = () => {
         ))}
       </View>
 
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Quick Actions</Text>
+        <View style={styles.actionsGrid}>
+          {quickActions.map((action, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.actionCard}
+              onPress={action.onPress}
+            >
+              <Text style={styles.actionIcon}>{action.icon}</Text>
+              <Text style={styles.actionTitle}>{action.title}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
+
       <View style={styles.content}>
         <Card>
           <Text style={styles.sectionTitle}>System Overview</Text>
           <Text style={styles.infoText}>
-            Admin features are under development. This dashboard will provide:
+            Admin features for managing the system:
           </Text>
+          <Text style={styles.bulletPoint}>• Upload and manage reports & resources</Text>
           <Text style={styles.bulletPoint}>• User management (parents & teachers)</Text>
           <Text style={styles.bulletPoint}>• System-wide analytics</Text>
-          <Text style={styles.bulletPoint}>• Resource management</Text>
-          <Text style={styles.bulletPoint}>• Report generation</Text>
+          <Text style={styles.bulletPoint}>• Administrative controls</Text>
         </Card>
       </View>
     </ScrollView>
@@ -94,7 +143,7 @@ const styles = StyleSheet.create({
     color: COLORS.textSecondary,
     textAlign: 'center',
   },
-  content: {
+  section: {
     padding: 16,
   },
   sectionTitle: {
@@ -102,6 +151,39 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: COLORS.textPrimary,
     marginBottom: 12,
+  },
+  actionsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+  },
+  actionCard: {
+    width: '48%',
+    backgroundColor: COLORS.background,
+    borderRadius: 12,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: COLORS.shadow,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  actionIcon: {
+    fontSize: 32,
+    marginBottom: 8,
+  },
+  actionTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: COLORS.textPrimary,
+    textAlign: 'center',
+  },
+  content: {
+    padding: 16,
   },
   infoText: {
     fontSize: 14,

@@ -2,8 +2,6 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TeacherDashboard from '../screens/teacher/TeacherDashboard';
-import UploadResourceScreen from '../screens/teacher/UploadResourceScreen';
-import UploadReportScreen from '../screens/teacher/UploadReportScreen';
 import StudentListScreen from '../screens/teacher/StudentListScreen';
 import InvitationCodesScreen from '../screens/teacher/InvitationCodesScreen';
 import ProfileScreen from '../screens/shared/ProfileScreen';
@@ -31,16 +29,6 @@ const HomeStack = () => {
         name="TeacherHome"
         component={TeacherDashboard}
         options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name={ROUTES.TEACHER_UPLOAD_RESOURCE}
-        component={UploadResourceScreen}
-        options={{ title: 'Upload Resource' }}
-      />
-      <Stack.Screen
-        name={ROUTES.TEACHER_UPLOAD_REPORT}
-        component={UploadReportScreen}
-        options={{ title: 'Upload Report' }}
       />
       <Stack.Screen
         name={ROUTES.TEACHER_STUDENTS}

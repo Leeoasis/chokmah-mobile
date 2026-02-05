@@ -14,14 +14,14 @@ export const ROUTES = {
   
   // Teacher routes
   TEACHER_DASHBOARD: 'TeacherDashboard',
-  TEACHER_UPLOAD_RESOURCE: 'TeacherUploadResource',
-  TEACHER_UPLOAD_REPORT: 'TeacherUploadReport',
   TEACHER_STUDENTS: 'TeacherStudents',
   TEACHER_INVITATIONS: 'TeacherInvitations',
   TEACHER_PROFILE: 'TeacherProfile',
   
   // Admin routes
   ADMIN_DASHBOARD: 'AdminDashboard',
+  ADMIN_UPLOAD_RESOURCE: 'AdminUploadResource',
+  ADMIN_UPLOAD_REPORT: 'AdminUploadReport',
   ADMIN_USERS: 'AdminUsers',
   ADMIN_PROFILE: 'AdminProfile',
   

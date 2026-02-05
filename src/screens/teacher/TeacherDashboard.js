@@ -28,16 +28,6 @@ const TeacherDashboard = ({ navigation }) => {
 
   const quickActions = [
     {
-      title: 'Upload Resource',
-      icon: '📁',
-      onPress: () => navigation.navigate('TeacherUploadResource'),
-    },
-    {
-      title: 'Upload Report',
-      icon: '📄',
-      onPress: () => navigation.navigate('TeacherUploadReport'),
-    },
-    {
       title: 'View Students',
       icon: '👥',
       onPress: () => navigation.navigate('TeacherStudents'),
