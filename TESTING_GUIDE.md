@@ -265,10 +265,41 @@ After splash screen (2 seconds), you should see:
    - ✓ Welcome message
    - ✓ Stats cards (Reports, Resources)
    - ✓ Quick action cards:
-     • Upload Resource 📁
-     • Upload Report 📄
      • View Students 👥
      • Invitations 🎫
+
+2. **Test View Students:**
+   ```
+   Action: Tap "View Students" card
+   Expected: Navigate to Student List screen
+   
+   Screen Elements:
+   - List of students (or "No students available")
+   - Student names and details
+   ```
+
+3. **Test Invitations:**
+   ```
+   Action: Tap "Invitations" card
+   Expected: Navigate to Invitation Codes screen
+   
+   Screen Elements:
+   - Generate invitation code button
+   - List of existing invitation codes (if any)
+   ```
+
+### 👨‍💼 Test 4: Admin Dashboard
+
+**Prerequisites:** Successfully logged in as Admin
+
+1. **Dashboard Elements:**
+   - ✓ Admin Dashboard heading
+   - ✓ Stats cards (Parents, Teachers, Reports, Resources)
+   - ✓ Quick action cards:
+     • Upload Resource 📁
+     • Upload Report 📄
+     • User Management 👥
+     • Analytics 📊
 
 2. **Test Upload Resource:**
    ```
@@ -312,19 +343,6 @@ After splash screen (2 seconds), you should see:
    Additional Field:
    - Student Name input (required)
    ```
-
-### 👨‍💼 Test 4: Admin Dashboard
-
-**Prerequisites:** Successfully logged in as Admin
-
-1. **Dashboard Elements:**
-   - ✓ "Admin Dashboard" header
-   - ✓ Statistics grid:
-     • Total Parents
-     • Total Teachers
-     • Total Reports
-     • Total Resources
-   - ✓ System overview card
 
 ---
 
@@ -736,8 +754,8 @@ Track your testing progress:
 ```
 Authentication:    [ ] 0/10 tests
 Parent Dashboard:  [ ] 0/8 tests
-Teacher Dashboard: [ ] 0/6 tests
-Admin Dashboard:   [ ] 0/3 tests
+Teacher Dashboard: [ ] 0/3 tests
+Admin Dashboard:   [ ] 0/6 tests
 Navigation:        [ ] 0/7 tests
 Forms:             [ ] 0/8 tests
 File Upload:       [ ] 0/6 tests

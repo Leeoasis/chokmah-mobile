@@ -40,14 +40,14 @@ A complete React Native mobile application for the SPPS Chokmah Parent Portal, b
 
 ### Teacher Features ✅
 - [x] Dashboard with quick actions
-- [x] Upload resources with file picker
-- [x] Upload reports (PDF files)
 - [x] Student list (placeholder)
 - [x] Invitation codes (placeholder)
 - [x] Profile management
 
 ### Admin Features ✅
 - [x] Dashboard with system overview
+- [x] Upload resources with file picker
+- [x] Upload reports (PDF files)
 - [x] Statistics display
 - [x] Profile management
 - [x] Foundation for user management

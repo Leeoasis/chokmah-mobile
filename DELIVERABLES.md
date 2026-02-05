@@ -66,15 +66,15 @@
 - [x] src/screens/parent/ResourcesScreen.js - View resources
 - [x] src/screens/parent/CalendarScreen.js - Homework calendar
 
-#### Teacher Screens (5)
+#### Teacher Screens (3)
 - [x] src/screens/teacher/TeacherDashboard.js - Teacher home
-- [x] src/screens/teacher/UploadResourceScreen.js - Upload resources
-- [x] src/screens/teacher/UploadReportScreen.js - Upload reports
 - [x] src/screens/teacher/StudentListScreen.js - View students
 - [x] src/screens/teacher/InvitationCodesScreen.js - Generate codes
 
-#### Admin Screens (1)
+#### Admin Screens (3)
 - [x] src/screens/admin/AdminDashboard.js - Admin overview
+- [x] src/screens/admin/UploadResourceScreen.js - Upload resources
+- [x] src/screens/admin/UploadReportScreen.js - Upload reports
 
 #### Shared Screens (1)
 - [x] src/screens/shared/ProfileScreen.js - User profile

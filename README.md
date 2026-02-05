@@ -14,13 +14,13 @@ A React Native mobile application for the SPPS Chokmah Parent Portal, built with
 - 🔐 Secure token-based authentication
 
 ### For Teachers
-- 📤 Upload educational resources
-- 📄 Upload student reports
 - 👥 View student lists
 - 🎫 Generate invitation codes for parents
 - 📊 Dashboard with quick actions
 
 ### For Administrators
+- 📤 Upload educational resources
+- 📄 Upload student reports
 - 👥 User management
 - 📊 System-wide reports and analytics
 - ⚙️ Administrative controls

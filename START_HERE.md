@@ -141,8 +141,8 @@ See **[TESTING_GUIDE.md](TESTING_GUIDE.md)** for 52+ detailed tests.
 
 **User Roles:**
 - 👨‍👩‍👧 **Parent** - View reports, resources, calendar
-- 👨‍🏫 **Teacher** - Upload resources, reports, manage students
-- ��‍💼 **Admin** - System management
+- 👨‍🏫 **Teacher** - Manage students, generate invitations
+- ��‍💼 **Admin** - Upload resources, reports, system management
 
 **Key Features:**
 - 🔐 JWT Authentication
