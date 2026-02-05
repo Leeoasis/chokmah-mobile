@@ -2,6 +2,8 @@
 
 A React Native mobile application for the SPPS Chokmah Parent Portal, built with Expo. This app provides parents, teachers, and administrators with mobile access to educational resources, reports, and communication tools.
 
+> 🚀 **Ready to test?** See **[HOW_TO_TEST.md](HOW_TO_TEST.md)** for a quick start guide or **[TESTING_GUIDE.md](TESTING_GUIDE.md)** for comprehensive testing instructions.
+
 ## Features
 
 ### For Parents
