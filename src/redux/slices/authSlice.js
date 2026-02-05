@@ -1,19 +1,33 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as authAPI from '../../services/api/authAPI';
 import { saveToken, saveUserData, clearStorage } from '../../utils/storage';
+import { logAuthFlow } from '../../utils/apiDebugger';
 
 // Async thunks
 export const loginUser = createAsyncThunk(
   'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
+      logAuthFlow('Starting login', { email });
       const response = await authAPI.login(email, password);
+      
+      logAuthFlow('Login response received', {
+        hasToken: !!response.token,
+        hasUser: !!response.user,
+        userRole: response.user?.role,
+      });
+      
       if (response.token) {
         await saveToken(response.token);
         await saveUserData(response.user);
+        logAuthFlow('Token and user data saved');
+      } else {
+        logAuthFlow('⚠️ WARNING: No token in response!');
       }
+      
       return response;
     } catch (error) {
+      logAuthFlow('Login failed', { error: error.message });
       return rejectWithValue(error.message || 'Login failed');
     }
   }
@@ -23,13 +37,26 @@ export const registerUser = createAsyncThunk(
   'auth/register',
   async (userData, { rejectWithValue }) => {
     try {
+      logAuthFlow('Starting registration', { email: userData.email, role: userData.role });
       const response = await authAPI.register(userData);
+      
+      logAuthFlow('Registration response received', {
+        hasToken: !!response.token,
+        hasUser: !!response.user,
+        userRole: response.user?.role,
+      });
+      
       if (response.token) {
         await saveToken(response.token);
         await saveUserData(response.user);
+        logAuthFlow('Token and user data saved');
+      } else {
+        logAuthFlow('⚠️ WARNING: No token in response!');
       }
+      
       return response;
     } catch (error) {
+      logAuthFlow('Registration failed', { error: error.message });
       return rejectWithValue(error.message || 'Registration failed');
     }
   }

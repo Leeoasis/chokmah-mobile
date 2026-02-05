@@ -4,6 +4,8 @@ A React Native mobile application for the SPPS Chokmah Parent Portal, built with
 
 > 🚀 **Ready to test?** See **[HOW_TO_TEST.md](HOW_TO_TEST.md)** for a quick start guide or **[TESTING_GUIDE.md](TESTING_GUIDE.md)** for comprehensive testing instructions.
 
+> 🔧 **Can't sign in?** See **[API_TROUBLESHOOTING.md](API_TROUBLESHOOTING.md)** for debugging help and API configuration guide.
+
 ## Features
 
 ### For Parents
@@ -229,6 +231,48 @@ cd ..
 - Ensure Android SDK is properly installed
 - Check that ANDROID_HOME environment variable is set
 - Verify you have at least one Android Virtual Device created
+
+### Authentication & API Issues
+
+**Issue: Cannot sign in / Login fails**
+
+See **[API_TROUBLESHOOTING.md](API_TROUBLESHOOTING.md)** for comprehensive debugging steps.
+
+**Quick checks:**
+1. **Backend is running**: Visit https://chokmah-resources-backend.onrender.com in browser
+2. **Run diagnostic tool**: `node test-api.js`
+3. **Check console logs**: Look for detailed API request/response logs
+4. **Verify credentials**: Ensure user exists in backend database
+5. **Check API endpoints**: Compare mobile app endpoints with backend routes
+
+**Test API connectivity:**
+```bash
+# Test if backend is alive
+curl https://chokmah-resources-backend.onrender.com
+
+# Test login endpoint
+curl -X POST https://chokmah-resources-backend.onrender.com/api/v1/login \
+  -H "Content-Type: application/json" \
+  -d '{"user":{"email":"test@test.com","password":"test123"}}'
+```
+
+**Debug in the app:**
+- Open the app and try to sign in
+- Check the console for detailed logs showing:
+  - API request URL and payload
+  - Response status and data
+  - Any error messages
+- These logs are automatically enabled when you run the app
+
+**Common solutions:**
+- Clear app data and try again
+- Wake up backend (Render.com free tier sleeps after inactivity)
+- Verify backend routes match mobile app endpoints
+- Check request/response format matches backend expectations
+
+See also:
+- [API_ENDPOINTS_GUIDE.md](API_ENDPOINTS_GUIDE.md) - Complete API documentation
+- [API_TROUBLESHOOTING.md](API_TROUBLESHOOTING.md) - Step-by-step debugging guide
 
 ### Network Issues
 
