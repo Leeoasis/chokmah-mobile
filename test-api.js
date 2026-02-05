@@ -9,9 +9,18 @@
  * Run with: node test-api.js
  */
 
+const http = require('http');
 const https = require('https');
+const url = require('url');
 
-const API_BASE_URL = 'https://chokmah-resources-backend.onrender.com';
+// Read API URL from environment or use localhost by default
+const API_BASE_URL = process.env.API_URL || 'http://localhost:3000';
+
+console.log('\n' + '='.repeat(60));
+console.log('🧪 Chokmah API Test Script');
+console.log('='.repeat(60));
+console.log(`Testing API at: ${API_BASE_URL}`);
+console.log('='.repeat(60) + '\n');
 
 // Color codes for terminal output
 const colors = {
@@ -30,7 +39,10 @@ function log(message, color = 'reset') {
 
 function makeRequest(options, data = null) {
   return new Promise((resolve, reject) => {
-    const req = https.request(options, (res) => {
+    // Choose http or https based on protocol
+    const protocol = options.protocol === 'https:' ? https : http;
+    
+    const req = protocol.request(options, (res) => {
       let body = '';
       
       res.on('data', (chunk) => {
@@ -65,10 +77,11 @@ async function testBackendConnectivity() {
   log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan');
   
   try {
-    const url = new URL(API_BASE_URL);
+    const parsedUrl = new url.URL(API_BASE_URL);
     const options = {
-      hostname: url.hostname,
-      port: 443,
+      protocol: parsedUrl.protocol,
+      hostname: parsedUrl.hostname,
+      port: parsedUrl.port || (parsedUrl.protocol === 'https:' ? 443 : 80),
       path: '/',
       method: 'GET',
     };
@@ -89,7 +102,7 @@ async function testLoginEndpoint() {
   log('Test 2: Login Endpoint', 'bright');
   log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan');
   
-  const url = new URL(API_BASE_URL);
+  const parsedUrl = new url.URL(API_BASE_URL);
   const testData = {
     user: {
       email: 'test@example.com',
@@ -98,8 +111,9 @@ async function testLoginEndpoint() {
   };
   
   const options = {
-    hostname: url.hostname,
-    port: 443,
+    protocol: parsedUrl.protocol,
+    hostname: parsedUrl.hostname,
+    port: parsedUrl.port || (parsedUrl.protocol === 'https:' ? 443 : 80),
     path: '/api/v1/login',
     method: 'POST',
     headers: {
@@ -144,7 +158,7 @@ async function testRegisterEndpoint() {
   log('Test 3: Register Endpoint', 'bright');
   log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'cyan');
   
-  const url = new URL(API_BASE_URL);
+  const parsedUrl = new url.URL(API_BASE_URL);
   const testData = {
     user: {
       email: 'test@example.com',
@@ -155,8 +169,9 @@ async function testRegisterEndpoint() {
   };
   
   const options = {
-    hostname: url.hostname,
-    port: 443,
+    protocol: parsedUrl.protocol,
+    hostname: parsedUrl.hostname,
+    port: parsedUrl.port || (parsedUrl.protocol === 'https:' ? 443 : 80),
     path: '/api/v1/signup',
     method: 'POST',
     headers: {

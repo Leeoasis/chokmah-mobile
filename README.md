@@ -64,6 +64,49 @@ Before you begin, ensure you have the following installed:
    npm install -g expo-cli
    ```
 
+## Local Development Setup
+
+**The app is configured by default to use `http://localhost:3000`** for local development.
+
+### Quick Start with Local Backend
+
+1. **Start your Rails backend:**
+   ```bash
+   cd /path/to/chokmah-backend
+   rails server -p 3000
+   ```
+
+2. **Verify backend is running:**
+   ```bash
+   curl http://localhost:3000
+   ```
+
+3. **Start the mobile app:**
+   ```bash
+   npm start
+   ```
+
+4. **Choose your platform:**
+   - Press `w` for Web
+   - Press `i` for iOS Simulator
+   - Press `a` for Android Emulator
+
+📖 **For detailed local development setup, see [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md)**
+
+### Switching to Production API
+
+To use the production backend instead of localhost:
+
+1. Edit `src/constants/api.js`
+2. Change line 41 from:
+   ```javascript
+   const currentEnvironment = 'development'; // localhost:3000
+   ```
+   to:
+   ```javascript
+   const currentEnvironment = 'production'; // render.com
+   ```
+
 ## Running the App
 
 ### Development Server
@@ -203,6 +246,42 @@ Metro bundler configuration.
 3. Create an Android Virtual Device (AVD)
 
 ## Troubleshooting
+
+### Authentication & API Issues
+
+**Can't sign in or API errors?**
+
+1. **Check if backend is running:**
+   ```bash
+   # For local development:
+   curl http://localhost:3000
+   
+   # For production:
+   curl https://chokmah-resources-backend.onrender.com
+   ```
+
+2. **Run the API diagnostic tool:**
+   ```bash
+   node test-api.js
+   ```
+
+3. **Check which API URL you're using:**
+   - Look for console output when app starts:
+   ```
+   📡 API Configuration
+   Environment: Development
+   API URL: http://localhost:3000
+   ```
+
+4. **Common fixes:**
+   - **Backend asleep (Render.com):** Visit the URL in browser to wake it up
+   - **Wrong environment:** Check `src/constants/api.js` currentEnvironment setting
+   - **Android emulator:** Should auto-use `10.0.2.2:3000` instead of localhost
+   - **Physical device:** Use your computer's IP (e.g., `192.168.1.100:3000`)
+
+📖 **See [SIGNIN_FIX_GUIDE.md](SIGNIN_FIX_GUIDE.md) for quick diagnosis**
+📖 **See [API_TROUBLESHOOTING.md](API_TROUBLESHOOTING.md) for detailed debugging**
+📖 **See [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md) for local setup**
 
 ### Common Issues
 

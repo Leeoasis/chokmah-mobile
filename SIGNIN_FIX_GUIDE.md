@@ -8,6 +8,31 @@ I've added comprehensive debugging tools to help you diagnose and fix the issue.
 
 ---
 
+## 🏠 Using Local Development?
+
+**If your backend is running on `localhost:3000`:**
+
+The app is **already configured** for local development by default! Just:
+
+1. **Start your backend:**
+   ```bash
+   cd /path/to/backend
+   rails server -p 3000
+   ```
+
+2. **Verify it's running:**
+   ```bash
+   curl http://localhost:3000
+   ```
+
+3. **Start the app and sign in!**
+
+If still having issues, continue with the diagnosis below.
+
+📖 **See [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md) for detailed local setup**
+
+---
+
 ## 🚀 Quick Diagnosis (30 seconds)
 
 ### Step 1: Run the Diagnostic Tool
@@ -17,7 +42,7 @@ cd chokmah-mobile
 node test-api.js
 ```
 
-This will test:
+This will automatically test the configured API (localhost or production) and check:
 - ✅ Is the backend reachable?
 - ✅ Does the login endpoint exist?
 - ✅ Does the register endpoint exist?
@@ -38,7 +63,27 @@ All tests passed! Try signing in with valid credentials.
 
 ---
 
-### Step 2: Wake Up the Backend (If Needed)
+### Step 2: Check Your Environment
+
+When you start the app (`npm start`), look for this in the console:
+
+```
+===========================================
+📡 API Configuration
+===========================================
+Environment: Development (or Production)
+Platform: ios (or android, web)
+API URL: http://localhost:3000 (or production URL)
+===========================================
+```
+
+This tells you exactly which API the app is using.
+
+---
+
+### Step 3: Wake Up the Backend (Production Only)
+
+**Only if using production backend on Render.com:**
 
 Render.com free tier puts apps to sleep after inactivity.
 
