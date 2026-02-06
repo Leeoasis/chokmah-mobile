@@ -1,0 +1,2 @@
+This is a placeholder for adaptive icon (adaptive-icon.png)
+In production, replace with a 1024x1024px PNG image

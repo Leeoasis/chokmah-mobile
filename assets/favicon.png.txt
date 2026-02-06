@@ -1,0 +1,2 @@
+This is a placeholder for favicon (favicon.png)
+In production, replace with a 48x48px PNG image
